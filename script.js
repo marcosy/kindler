@@ -73,4 +73,4 @@ function padZero(num) {
 }
 
 // Main
-console.log(GOSPEL.extract());
+GOSPEL.extract();
