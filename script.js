@@ -15,14 +15,9 @@ var GOSPEL = {
 
        this.footer = extracted.data.readings[2].reading_code
 
-       this.load()
-    },
-
-    load: function() {
-        writeToDiv('div-gospel-body', this.body);
-        writeToDiv('div-gospel-header', this.header);
-        writeToDiv('div-gospel-footer', this.footer);
-
+       writeToDiv('div-gospel-body', this.body);
+       writeToDiv('div-gospel-header', this.header);
+       writeToDiv('div-gospel-footer', this.footer);
     },
 }
 
