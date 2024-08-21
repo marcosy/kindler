@@ -3,9 +3,22 @@ function run() {
 }
 
 function getGospel(dateString) {
-    httpGet('https://publication.evangelizo.ws/SP/days/' + dateString + '?from=gospelComponent', function(data) {
-        document.writeln(data.data.readings[2].text);
-    });
+    httpGet('https://publication.evangelizo.ws/SP/days/' + dateString + '?from=gospelComponent', 
+        function(data) {
+            var gospelText = data.data.readings[2].text;
+            gospelText = gospelText.replace(/\[\[.*?\]\]/g, ''); // Remove any text within [[...]]
+            writeToDiv('div-gospel', gospelText);
+        }
+    );
+}
+
+function writeToDiv(divId, text) {
+    var div = document.getElementById(divId);
+    if (div) {
+        div.innerHTML = text;
+    } else {
+        console.error('Div with id ' + divId + ' not found');
+    }
 }
 
 function httpGet(url, callback) {
