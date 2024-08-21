@@ -2,7 +2,7 @@ var GOSPEL = {
     url: 'https://publication.evangelizo.ws/SP/days/' + getCurrentDate() + '?from=gospelComponent',
 
     extract: function(){
-        httpGet(this.url, this.transform.bind(this)) // explicitly bind the context of this to the GOSPEL object
+        httpGet(this.url, this.transform)
     },
 
     transform: function(extracted) {
