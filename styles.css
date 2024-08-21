@@ -9,11 +9,12 @@ h1 {
     background-color: gainsboro;
 } 
 
-#header {
+#p-header {
     text-align: center;
 }
 
 div {
     background-color:gainsboro;
-    border: 2px solid
+    font-size: larger;
+    border: 2px solid;
 }
