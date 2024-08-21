@@ -9,9 +9,13 @@ function getTodaysGospel() {
 function getCurrentDate() {
     var today = new Date();
     var year = today.getFullYear();
-    var month = String(today.getMonth() + 1).padStart(2, '0'); // Months are zero-based
-    var day = String(today.getDate()).padStart(2, '0');
+    var month = padZero(today.getMonth() + 1); // Months are zero-based
+    var day = padZero(today.getDate());
     return year + '-' + month + '-' + day;
+}
+
+function padZero(num) {
+    return num < 10 ? '0' + num : num;
 }
 
 function getGospel(dateString) {
