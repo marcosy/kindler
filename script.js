@@ -1,5 +1,17 @@
 function run() {
-    getGospel("2024-08-21");
+    getTodaysGospel();
+}
+
+function getTodaysGospel() {
+    getGospel(getCurrentDate());
+}
+
+function getCurrentDate() {
+    var today = new Date();
+    var year = today.getFullYear();
+    var month = String(today.getMonth() + 1).padStart(2, '0'); // Months are zero-based
+    var day = String(today.getDate()).padStart(2, '0');
+    return year + '-' + month + '-' + day;
 }
 
 function getGospel(dateString) {
