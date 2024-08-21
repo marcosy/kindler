@@ -1,32 +1,31 @@
-function run() {
-    getTodaysGospel();
+var GOSPEL = {
+    url: 'https://publication.evangelizo.ws/SP/days/' + getCurrentDate() + '?from=gospelComponent',
+
+    extract: function(){
+        httpGet(this.url, this.transform.bind(this)) // explicitly bind the context of this to the GOSPEL object
+    },
+
+    transform: function(extracted) {
+       this.body = extracted.data.readings[2].text.
+                    replace(/\[\[.*?\]\]/g, '</br></br>'); // Remove any text within [[...]]
+
+       this.header = extracted.data.date_displayed +
+                    " | " +
+                    extracted.data.readings[2].title
+
+       this.footer = extracted.data.readings[2].reading_code
+
+       this.load()
+    },
+
+    load: function() {
+        writeToDiv('div-gospel-body', this.body);
+        writeToDiv('div-gospel-header', this.header);
+        writeToDiv('div-gospel-footer', this.footer);
+
+    },
 }
 
-function getTodaysGospel() {
-    getGospel(getCurrentDate());
-}
-
-function getCurrentDate() {
-    var today = new Date();
-    var year = today.getFullYear();
-    var month = padZero(today.getMonth() + 1); // Months are zero-based
-    var day = padZero(today.getDate());
-    return year + '-' + month + '-' + day;
-}
-
-function padZero(num) {
-    return num < 10 ? '0' + num : num;
-}
-
-function getGospel(dateString) {
-    httpGet('https://publication.evangelizo.ws/SP/days/' + dateString + '?from=gospelComponent', 
-        function(data) {
-            var gospelText = data.data.readings[2].text;
-            gospelText = gospelText.replace(/\[\[.*?\]\]/g, ''); // Remove any text within [[...]]
-            writeToDiv('div-gospel', gospelText);
-        }
-    );
-}
 
 function writeToDiv(divId, text) {
     var div = document.getElementById(divId);
@@ -60,4 +59,18 @@ function httpGet(url, callback) {
     xhr.send();
 }
 
-run();
+// Utils
+function getCurrentDate() {
+    var today = new Date();
+    var year = today.getFullYear();
+    var month = padZero(today.getMonth() + 1); // Months are zero-based
+    var day = padZero(today.getDate());
+    return year + '-' + month + '-' + day;
+}
+
+function padZero(num) {
+    return num < 10 ? '0' + num : num;
+}
+
+// Main
+console.log(GOSPEL.extract());
