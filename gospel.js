@@ -6,9 +6,10 @@ var GOSPEL = {
     },
 
     transform: function(extracted) {
-       this.body = extracted.data.readings[2].text.
-                    replace(/\[\[.*?\]\]/g, '</br></br>'); // Remove any text within [[...]]
-
+       this.body = extracted.data.readings[2].text;                   
+       this.body = this.body.replace(/\[\[.*?\]\]/g, '</br></br>'); // Remove any text within [[...]]
+       this.body = this.body.replace('</br></br>',''); // do not add br the first time
+                    
        this.header = extracted.data.date_displayed +
                     " | " +
                     extracted.data.readings[2].title
@@ -20,7 +21,6 @@ var GOSPEL = {
        writeToDiv('div-gospel-footer', this.footer);
     },
 }
-
 
 function writeToDiv(divId, text) {
     var div = document.getElementById(divId);

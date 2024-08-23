@@ -3,22 +3,6 @@ body {
     font-family: Geneva;
 }
 
-h1 {
-    color:black;
-    text-align: center;
-    background-color: gainsboro;
-} 
-
-#p-header {
-    text-align: center;
-}
-
-div {
-    background-color:gainsboro;
-    font-size: x-large;
-    border: 2px solid;
-}
-
 .button-link {
     display: inline-block;
     padding: 20px 40px;
@@ -30,4 +14,34 @@ div {
     border-radius: 8px;
     border: none;
     transition: background-color 0.3s ease;
+}
+
+.button-container {
+    text-align: center;
+}
+
+.title {
+    color:black;
+    text-align: center;
+    background-color: gainsboro;
+} 
+
+.content-header {
+    background-color:gainsboro;
+    font-size: x-large;
+    border: 2px solid;
+    padding: 10px;
+}
+.content-body {
+    background-color:gainsboro;
+    font-size: x-large;
+    border: 2px solid;
+    padding: 10px;
+}
+.content-footer {
+    background-color:gainsboro;
+    font-size: x-large;
+    border: 2px solid;
+    text-align: right;
+    padding: 10px;
 }
